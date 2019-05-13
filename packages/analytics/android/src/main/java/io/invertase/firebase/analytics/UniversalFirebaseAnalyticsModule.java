@@ -52,7 +52,7 @@ public class UniversalFirebaseAnalyticsModule extends UniversalFirebaseModule {
     });
   }
 
-  Task<Void> setAnalyticsCollectionEnabled(
+  Task<Void> setCurrentScreen(
     Activity currentActivity,
     String screenName,
     @Nullable String screenClassOverride

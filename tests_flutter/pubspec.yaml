@@ -17,8 +17,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
+  flutter_firebase_app:
+    path: ../packages/app/
+
   flutter_firebase_analytics:
     path: ../packages/analytics/
+
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec

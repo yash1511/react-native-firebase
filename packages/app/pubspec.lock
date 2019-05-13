@@ -29,32 +29,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.14.11"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.2"
   flutter:
     dependency: "direct main"
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_firebase_analytics:
-    dependency: "direct dev"
-    description:
-      path: "..\\packages\\analytics"
-      relative: true
-    source: path
-    version: "0.0.1"
-  flutter_firebase_app:
-    dependency: "direct dev"
-    description:
-      path: "..\\packages\\app"
-      relative: true
-    source: path
-    version: "0.0.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter

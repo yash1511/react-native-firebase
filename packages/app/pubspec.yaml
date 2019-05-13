@@ -1,0 +1,23 @@
+name: flutter_firebase_app
+description: Firebase App.
+version: 0.0.1
+authors:
+  - Mike Diarmid <mike@invertase.io>
+  - Elliot Hesp <elliot@invertase.io>
+homepage: https://invertase.io
+
+environment:
+  sdk: ">=2.1.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  plugin:
+    androidPackage: io.invertase.firebase.app
+    pluginClass: FlutterFirebaseAppPlugin

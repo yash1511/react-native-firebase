@@ -60,6 +60,7 @@ dependencies {
 //  api project(':@react-native-firebase_app')
   implementation "com.google.firebase:firebase-analytics:${ReactNative.ext.getVersion("firebase", "analytics")}"
   implementation "com.google.android.gms:play-services-base:${ReactNative.ext.getVersion("googlePlayServices", "base")}"
+  compile project(path: ':flutter_firebase_app')
 }
 
 ReactNative.shared.applyPackageVersion()
@@ -67,7 +68,7 @@ ReactNative.shared.applyDefaultExcludes()
 ReactNative.module.applyAndroidVersions()
 //ReactNative.module.applyReactNativeDependency("api")
 
-// Flutter - Non Expo
+// Flutter
 if (new File(rootProject.projectDir.parentFile, 'pubspec.yaml').exists()) {
   apply from: file("./flutter.gradle")
 // React Native

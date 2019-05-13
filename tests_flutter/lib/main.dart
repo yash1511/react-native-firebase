@@ -35,8 +35,7 @@ class _MyAppState extends State<MyApp> {
     await analytics.setUserProperties({
       'foo': 'bar'
     });
-
-//    await Analytics.setUserId(null);
+    await analytics.resetAnalyticsData();
 
 
     // If the widget was removed from the tree while the asynchronous platform
