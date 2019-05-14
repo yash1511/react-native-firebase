@@ -13,6 +13,8 @@ plugins {
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 project.ext {
   set('react-native', [
@@ -62,6 +64,8 @@ dependencies {
   implementation "com.google.android.gms:play-services-base:${ReactNative.ext.getVersion("googlePlayServices", "base")}"
   implementation 'androidx.annotation:annotation:1.0.2'
   implementation project(path: ':flutter_firebase_app')
+  implementation "androidx.core:core-ktx:+"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 
 ReactNative.shared.applyPackageVersion()

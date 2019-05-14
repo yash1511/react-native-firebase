@@ -31,16 +31,22 @@ class _MyAppState extends State<MyApp> {
     // Platform messages may fail, so we use a try/catch PlatformException.
 
 
-      await analytics.logEvent('', null);
-      await analytics.setAnalyticsCollectionEnabled(true);
-      await analytics.setCurrentScreen('Home', 'Moo');
-      await analytics.setMinimumSessionDuration(123);
-      await analytics.setSessionTimeoutDuration(123);
-      await analytics.setUserId('');
-      await analytics.setUserProperties({
-        'foo': 'bar'
+      await analytics.logEvent("hello", {
+        "foo": "bar"
       });
-      await analytics.resetAnalyticsData();
+
+      setState(() {
+        _platformVersion = "Loaded";
+      });
+//      await analytics.setAnalyticsCollectionEnabled(true);
+//      await analytics.setCurrentScreen('Home', 'Moo');
+//      await analytics.setMinimumSessionDuration(123);
+//      await analytics.setSessionTimeoutDuration(123);
+//      await analytics.setUserId('');
+//      await analytics.setUserProperties({
+//        'foo': 'bar'
+//      });
+//      await analytics.resetAnalyticsData();
 
 
 
