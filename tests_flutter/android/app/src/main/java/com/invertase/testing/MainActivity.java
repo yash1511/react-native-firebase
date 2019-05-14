@@ -1,4 +1,4 @@
-package testyyyy.analytics_example;
+package com.invertase.testing;
 
 import android.os.Bundle;
 import io.flutter.app.FlutterActivity;

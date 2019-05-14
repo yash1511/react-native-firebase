@@ -17,7 +17,11 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     super.initState();
-    initPlatformState();
+    try {
+      initPlatformState();
+    } catch (e) {
+      throw e;
+    }
   }
 
   Analytics analytics = Analytics();
@@ -26,16 +30,18 @@ class _MyAppState extends State<MyApp> {
   Future<void> initPlatformState() async {
     // Platform messages may fail, so we use a try/catch PlatformException.
 
-    await analytics.logEvent('', null);
-    await analytics.setAnalyticsCollectionEnabled(true);
-    await analytics.setCurrentScreen('Home', 'Moo');
-    await analytics.setMinimumSessionDuration(123);
-    await analytics.setSessionTimeoutDuration(123);
-    await analytics.setUserId('');
-    await analytics.setUserProperties({
-      'foo': 'bar'
-    });
-    await analytics.resetAnalyticsData();
+
+      await analytics.logEvent('', null);
+      await analytics.setAnalyticsCollectionEnabled(true);
+      await analytics.setCurrentScreen('Home', 'Moo');
+      await analytics.setMinimumSessionDuration(123);
+      await analytics.setSessionTimeoutDuration(123);
+      await analytics.setUserId('');
+      await analytics.setUserProperties({
+        'foo': 'bar'
+      });
+      await analytics.resetAnalyticsData();
+
 
 
     // If the widget was removed from the tree while the asynchronous platform

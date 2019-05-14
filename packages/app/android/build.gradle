@@ -61,6 +61,7 @@ dependencies {
   implementation "com.google.firebase:firebase-core:${ReactNative.ext.getVersion("firebase", "core")}"
   implementation "com.google.firebase:firebase-common:${ReactNative.ext.getVersion("firebase", "common")}"
   implementation "com.google.android.gms:play-services-base:${ReactNative.ext.getVersion("googlePlayServices", "base")}"
+  implementation 'androidx.annotation:annotation:1.0.2'
 }
 
 apply from: file("./firebase-json.gradle")

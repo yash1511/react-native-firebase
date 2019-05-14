@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import javax.annotation.OverridingMethodsMustInvokeSuper;
+//import javax.annotation.OverridingMethodsMustInvokeSuper;
 
 public class UniversalFirebaseModule {
   private static Map<String, ExecutorService> executors = new HashMap<>();
@@ -53,7 +53,7 @@ public class UniversalFirebaseModule {
     return "Universal" + serviceName + "Module";
   }
 
-  @OverridingMethodsMustInvokeSuper
+//  @OverridingMethodsMustInvokeSuper
   public void onTearDown() {
     ExecutorService existingSingleThreadExecutor = executors.get(getName());
     if (existingSingleThreadExecutor != null) {

@@ -27,7 +27,7 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.Set;
 
-import javax.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import io.invertase.firebase.common.UniversalFirebaseModule;
 
