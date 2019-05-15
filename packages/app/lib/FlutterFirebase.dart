@@ -19,8 +19,8 @@ class FlutterFirebase {
 
   // Checks whether a given argument string value is empty
   void notEmpty(String argument, String value) {
-    if (value.isEmpty) throw ArgumentError.value(
-      value, argument, 'Argument must not be an empty string.'
+    if (value != null && value.isEmpty) throw ArgumentError.value(
+      value, argument, 'Must not be an empty string.'
     );
   }
 

@@ -91,14 +91,14 @@ packages:
   flutter_firebase_analytics:
     dependency: "direct dev"
     description:
-      path: "..\\packages\\analytics"
+      path: "../packages/analytics"
       relative: true
     source: path
     version: "0.0.1"
   flutter_firebase_app:
     dependency: "direct dev"
     description:
-      path: "..\\packages\\app"
+      path: "../packages/app"
       relative: true
     source: path
     version: "0.0.1"

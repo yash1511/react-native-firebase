@@ -17,7 +17,6 @@ package io.invertase.firebase.analytics
  *
  */
 
-import android.util.Log
 import com.google.android.gms.tasks.Task
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -78,7 +77,6 @@ open class FlutterFirebaseAnalyticsPlugin(registrar: Registrar) : FlutterFirebas
 
   private fun setAnalyticsCollectionEnabled(arguments: Map<String, Any>, result: Result) {
     val enabled = arguments["enabled"] as Boolean
-
     module.setAnalyticsCollectionEnabled(enabled).addOnCompleteListener { task: Task<Void> ->
       when {
         task.isSuccessful -> result.success(task.result)
@@ -89,8 +87,7 @@ open class FlutterFirebaseAnalyticsPlugin(registrar: Registrar) : FlutterFirebas
 
   private fun setCurrentScreen(arguments: Map<String, Any>, result: Result) {
     val screenName = arguments["screenName"] as String
-    Log.d("Elliot", "wtf")
-    val screenClassOverride = arguments["screenClassOverride "] as String
+    val screenClassOverride = arguments["screenClassOverride"] as String
 
     module.setCurrentScreen(activity, screenName, screenClassOverride).addOnCompleteListener { task: Task<Void> ->
       when {
@@ -101,9 +98,9 @@ open class FlutterFirebaseAnalyticsPlugin(registrar: Registrar) : FlutterFirebas
   }
 
   private fun setMinimumSessionDuration(arguments: Map<String, Any>, result: Result) {
-    val milliseconds = arguments["milliseconds"] as Long
+    val milliseconds = arguments["milliseconds"] as Int
 
-    module.setMinimumSessionDuration(milliseconds).addOnCompleteListener { task: Task<Void> ->
+    module.setMinimumSessionDuration(milliseconds.toLong()).addOnCompleteListener { task: Task<Void> ->
       when {
         task.isSuccessful -> result.success(task.result)
         else -> rejectResultWithExceptionMap(result, task.exception)
@@ -112,9 +109,9 @@ open class FlutterFirebaseAnalyticsPlugin(registrar: Registrar) : FlutterFirebas
   }
 
   private fun setSessionTimeoutDuration(arguments: Map<String, Any>, result: Result) {
-    val milliseconds = arguments["milliseconds"] as Long
+    val milliseconds = arguments["milliseconds"] as Int
 
-    module.setSessionTimeoutDuration(milliseconds).addOnCompleteListener { task: Task<Void> ->
+    module.setSessionTimeoutDuration(milliseconds.toLong()).addOnCompleteListener { task: Task<Void> ->
       when {
         task.isSuccessful -> result.success(task.result)
         else -> rejectResultWithExceptionMap(result, task.exception)
@@ -123,7 +120,7 @@ open class FlutterFirebaseAnalyticsPlugin(registrar: Registrar) : FlutterFirebas
   }
 
   private fun setUserId(arguments: Map<String, Any>, result: Result) {
-    val id = arguments["id"] as String
+    val id = arguments["id"] as? String
 
     module.setUserId(id).addOnCompleteListener { task: Task<Void> ->
       when {
@@ -135,7 +132,7 @@ open class FlutterFirebaseAnalyticsPlugin(registrar: Registrar) : FlutterFirebas
 
   private fun setUserProperty(arguments: Map<String, Any>, result: Result) {
     val name = arguments["name"] as String
-    val value = arguments["value"] as String
+    val value = arguments["value"] as? String
 
     module.setUserProperty(name, value).addOnCompleteListener { task: Task<Void> ->
       when {

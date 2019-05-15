@@ -23,7 +23,7 @@ const List<String> _reservedEventNames = <String>[
 class Analytics extends FlutterFirebase {
   static MethodChannel _channel = FlutterFirebase.getChannel('analytics');
 
-  Future<void> logEvent(String name, Map<String, dynamic> parameters) async {
+  Future<void> logEvent(String name, [Map<String, dynamic> parameters]) async {
     notNull('name', name);
     notEmpty('name', name);
 
@@ -37,6 +37,11 @@ class Analytics extends FlutterFirebase {
     if (name.length > 32 || !isAlphaNumericUnderscore(name)) {
       throw ArgumentError.value(name, 'name',
         'Event name is invalid. Names should contain 1 to 32 alphanumeric characters or underscores.');
+    }
+
+    if (parameters != null && parameters.length > 25) {
+      throw ArgumentError.value(name, 'name',
+          'Event parameters are invalid. Must contain no more than 25 key/value pairs.');
     }
 
     await _channel.invokeMethod('logEvent', <String, dynamic>{
@@ -56,8 +61,6 @@ class Analytics extends FlutterFirebase {
     [String screenClassOverride = 'Flutter']) async {
     notNull('screenName', screenName);
     notEmpty('screenName', screenName);
-    print("ELLIOT WAS HERE: $screenName");
-    print("ELLIOT WAS HERE: $screenClassOverride");
     await _channel.invokeMethod('setCurrentScreen', <String, String>{
       'screenName': screenName,
       'screenClassOverride': screenClassOverride,
@@ -77,7 +80,6 @@ class Analytics extends FlutterFirebase {
   }
 
   Future<void> setUserId(String id) async {
-    notNull('id', id);
     notEmpty('id', id);
     await _channel.invokeMethod('setUserId', <String, String>{
       'id': id,
@@ -87,9 +89,10 @@ class Analytics extends FlutterFirebase {
   Future<void> setUserProperty(String name, String value) async {
     notNull('name', name);
     notEmpty('name', name);
-    if (name.isEmpty || name.length > 24 || !isAlphaNumericUnderscore(name)) {
+    notEmpty('value', value);
+    if (name.length > 24 || !isAlphaNumericUnderscore(name)) {
       throw ArgumentError.value(
-        name, 'name', 'must contain 1 to 24 alphanumeric characters.');
+        name, 'name', 'Must contain 1 to 24 alphanumeric characters.');
     }
 
     await _channel.invokeMethod('setUserProperty', <String, String>{
@@ -100,6 +103,7 @@ class Analytics extends FlutterFirebase {
 
   Future<void> setUserProperties(Map<String, String> properties) async {
     notNull('properties', properties);
+
     await _channel.invokeMethod('setUserProperties', {
       'properties': properties,
     });

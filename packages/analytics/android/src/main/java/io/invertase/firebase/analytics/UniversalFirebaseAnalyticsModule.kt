@@ -71,14 +71,14 @@ class UniversalFirebaseAnalyticsModule internal constructor(context: Context, se
     }
   }
 
-  internal fun setUserId(id: String): Task<Void> {
+  internal fun setUserId(id: String?): Task<Void> {
     return Tasks.call {
       FirebaseAnalytics.getInstance(context).setUserId(id)
       return@call null
     }
   }
 
-  internal fun setUserProperty(name: String, value: String): Task<Void> {
+  internal fun setUserProperty(name: String, value: String?): Task<Void> {
     return Tasks.call {
       FirebaseAnalytics.getInstance(context).setUserProperty(name, value)
       return@call null
@@ -90,7 +90,10 @@ class UniversalFirebaseAnalyticsModule internal constructor(context: Context, se
       val firebaseAnalytics = FirebaseAnalytics.getInstance(context)
 
       properties?.keySet()?.forEach { bundleKey ->
-        firebaseAnalytics.setUserProperty(bundleKey, properties.get(bundleKey) as String)
+        firebaseAnalytics.setUserProperty(
+          bundleKey,
+          properties[bundleKey] as? String
+        )
       }
 
       return@call null
