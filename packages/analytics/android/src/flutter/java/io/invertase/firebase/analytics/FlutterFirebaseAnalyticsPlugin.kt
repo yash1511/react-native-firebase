@@ -17,6 +17,7 @@ package io.invertase.firebase.analytics
  *
  */
 
+import android.util.Log
 import com.google.android.gms.tasks.Task
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
@@ -43,7 +44,12 @@ open class FlutterFirebaseAnalyticsPlugin(registrar: Registrar) : FlutterFirebas
   }
 
   override fun onMethodCall(call: MethodCall, result: Result) {
-    @Suppress("UNCHECKED_CAST") val arguments = call.arguments as Map<String, Any>
+    var arguments = emptyMap<String, Any>()
+
+    if (call.arguments != null) {
+      @Suppress("UNCHECKED_CAST")
+      arguments = call.arguments as Map<String, Any>
+    }
 
     when (call.method) {
       "logEvent" -> logEvent(arguments, result)
@@ -83,6 +89,7 @@ open class FlutterFirebaseAnalyticsPlugin(registrar: Registrar) : FlutterFirebas
 
   private fun setCurrentScreen(arguments: Map<String, Any>, result: Result) {
     val screenName = arguments["screenName"] as String
+    Log.d("Elliot", "wtf")
     val screenClassOverride = arguments["screenClassOverride "] as String
 
     module.setCurrentScreen(activity, screenName, screenClassOverride).addOnCompleteListener { task: Task<Void> ->

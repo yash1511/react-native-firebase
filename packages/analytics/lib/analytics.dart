@@ -23,7 +23,7 @@ const List<String> _reservedEventNames = <String>[
 class Analytics extends FlutterFirebase {
   static MethodChannel _channel = FlutterFirebase.getChannel('analytics');
 
-  Future<void> logEvent(String name, Map<String, String> parameters) async {
+  Future<void> logEvent(String name, Map<String, dynamic> parameters) async {
     notNull('name', name);
     notEmpty('name', name);
 
@@ -56,6 +56,8 @@ class Analytics extends FlutterFirebase {
     [String screenClassOverride = 'Flutter']) async {
     notNull('screenName', screenName);
     notEmpty('screenName', screenName);
+    print("ELLIOT WAS HERE: $screenName");
+    print("ELLIOT WAS HERE: $screenClassOverride");
     await _channel.invokeMethod('setCurrentScreen', <String, String>{
       'screenName': screenName,
       'screenClassOverride': screenClassOverride,
