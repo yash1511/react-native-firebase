@@ -17,9 +17,14 @@ package io.invertase.firebase.ml.naturallanguage;
  *
  */
 
+import android.util.Log;
+
+import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactMethod;
+
+import java.util.Objects;
 
 import io.invertase.firebase.common.ReactNativeFirebaseModule;
 
@@ -46,20 +51,22 @@ class RNFirebaseMLNaturalLanguageSmartReplyModule extends ReactNativeFirebaseMod
    */
   @ReactMethod
   public void getSuggestedReplies(String appName, int conversationId, Promise promise) {
-    module.getSuggestedReplies(appName, conversationId).addOnCompleteListener(task -> {
-      if (task.isSuccessful()) {
-        promise.resolve(task.getResult());
-      } else {
-        String[] errorCodeAndMessage = UniversalFirebaseMLNaturalLanguageCommon.getErrorCodeAndMessageFromException(
-          task.getException());
-        rejectPromiseWithCodeAndMessage(
-          promise,
-          errorCodeAndMessage[0],
-          errorCodeAndMessage[1],
-          errorCodeAndMessage[2]
-        );
-      }
-    });
+    module
+      .getSuggestedReplies(appName, conversationId)
+      .addOnCompleteListener(getExecutor(), task -> {
+        if (task.isSuccessful()) {
+          promise.resolve(Arguments.fromList(Objects.requireNonNull(task.getResult())));
+        } else {
+          String[] errorCodeAndMessage = UniversalFirebaseMLNaturalLanguageCommon.getErrorCodeAndMessageFromException(
+            task.getException());
+          rejectPromiseWithCodeAndMessage(
+            promise,
+            errorCodeAndMessage[0],
+            errorCodeAndMessage[1],
+            errorCodeAndMessage[2]
+          );
+        }
+      });
   }
 
   /**
@@ -70,9 +77,9 @@ class RNFirebaseMLNaturalLanguageSmartReplyModule extends ReactNativeFirebaseMod
     String appName,
     int conversationId,
     String message,
-    long timestamp
+    double timestamp
   ) {
-    module.addLocalUserMessage(conversationId, message, timestamp);
+    module.addLocalUserMessage(conversationId, message, (long) timestamp);
   }
 
   /**
@@ -83,10 +90,12 @@ class RNFirebaseMLNaturalLanguageSmartReplyModule extends ReactNativeFirebaseMod
     String appName,
     int conversationId,
     String message,
-    long timestamp,
+    double timestamp,
     String remoteUserId
   ) {
-    module.addRemoteUserMessage(conversationId, message, timestamp, remoteUserId);
+    module
+      .addRemoteUserMessage(conversationId, message, (long) timestamp, remoteUserId)
+      .addOnFailureListener(exception -> Log.e("SHOOBY", "DOOBY", exception));
   }
 
   @ReactMethod
