@@ -26,23 +26,23 @@ const { requirePackageTests } = require('./helpers');
 const { detox: config } = require('../package.json');
 
 const PACKAGES = [
-  'app',
-  'iid',
-  'perf',
-  'fiam',
-  'functions',
+  // 'app',
+  // 'iid',
+  // 'perf',
+  // 'fiam',
+  // 'functions',
   'analytics',
-  'config',
-  'crashlytics',
-  'utils',
+  // 'config',
+  // 'crashlytics',
+  // 'utils',
   // 'mlkit',
-  'ml-natural-language',
-  'invites',
-  'auth',
+  // 'ml-natural-language',
+  // 'invites',
+  // 'auth',
   // 'firestore',
-  'links',
+  // 'links',
   // 'messaging',
-  'storage',
+  // 'storage',
 ];
 
 for (let i = 0; i < PACKAGES.length; i++) {

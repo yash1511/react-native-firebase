@@ -253,4 +253,140 @@ describe('analytics()', () => {
       await firebase.analytics().setUserProperties({ invertase2: 'rn-firebase' });
     });
   });
+
+  describe('logAddPaymentInfo()', () => {
+    it('calls logEvent', async () => {
+      await firebase.analytics().logAddPaymentInfo();
+    });
+  });
+
+  describe.only('logAddToCart()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logAddToCart();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('errors when compound values are not set', async () => {
+      try {
+        await firebase.analytics().logAddToCart({
+          itemId: 'foo',
+          itemName: 'foo',
+          itemCategory: 'foo',
+          quantity: 1,
+          value: 123,
+        });
+      } catch (e) {
+        e.message.should.containEql('are both required if either is specified');
+      }
+    });
+
+    it('calls logAddToCart', async () => {
+      await firebase.analytics().logAddToCart({
+        itemId: 'foo',
+        itemName: 'foo',
+        itemCategory: 'foo',
+        quantity: 1,
+        itemLocationId: 'foo',
+        startDate: '2019-01-01',
+        value: 123,
+        currency: 'GBP',
+      });
+    });
+  });
+
+  describe.only('logAddToWishlist()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logAddToWishlist();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('errors when compound values are not set', async () => {
+      try {
+        await firebase.analytics().logAddToWishlist({
+          itemId: 'foo',
+          itemName: 'foo',
+          itemCategory: 'foo',
+          quantity: 1,
+          value: 123,
+        });
+      } catch (e) {
+        e.message.should.containEql('are both required if either is specified');
+      }
+    });
+
+    it('calls logAddToWishlist', async () => {
+      await firebase.analytics().logAddToWishlist({
+        itemId: 'foo',
+        itemName: 'foo',
+        itemCategory: 'foo',
+        quantity: 1,
+        itemLocationId: 'foo',
+        value: 123,
+        currency: 'GBP',
+      });
+    });
+  });
+
+  describe.only('logAppOpen()', () => {
+    it('calls logAppOpen', async () => {
+      await firebase.analytics().logAppOpen();
+    });
+  });
+
+  describe.only('logBeginCheckout()', () => {
+    it('calls logBeginCheckout', async () => {
+      await firebase.analytics().logBeginCheckout();
+    });
+
+    it('errors when compound values are not set', async () => {
+      try {
+        await firebase.analytics().logBeginCheckout({
+          value: 123,
+        });
+      } catch (e) {
+        e.message.should.containEql('are both required if either is specified');
+      }
+    });
+  });
+
+  describe.only('logCampaignDetails()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logCampaignDetails();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logCampaignDetails', async () => {
+      await firebase.analytics().logCampaignDetails({
+        source: 'foo',
+        medium: 'bar',
+        campaign: 'baz',
+      });
+    });
+  });
+
+  describe.only('logEarnVirtualCurrency()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logEarnVirtualCurrency();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logCampaignDetails', async () => {
+      await firebase.analytics().logEarnVirtualCurrency({
+        virtual_currency_name: 'foo',
+        value: 123,
+      });
+    });
+  });
 });

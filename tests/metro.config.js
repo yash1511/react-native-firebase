@@ -39,6 +39,7 @@ const config = {
   resolver: {
     platforms: ['ios', 'android', 'native'],
     resolverMainFields: ['react-native', 'browser', 'main'],
+    // providesModuleNodeModules: ['react-native', ...plugins.haste.providesModuleNodeModules],
     providesModuleNodeModules: ['react-native'],
     hasteImplModulePath: join(reactNativePath, 'jest/hasteImpl'),
     blackListRE: createBlacklist([
@@ -83,7 +84,7 @@ const config = {
     babelTransformerPath: require.resolve('metro-react-native-babel-transformer'),
     assetRegistryPath: join(reactNativePath, 'Libraries/Image/AssetRegistry'),
   },
-  watchFolders: [resolve(__dirname, '.'), ...firebaseModules],
+  watchFolders: [resolve(__dirname, '.'), resolve(__dirname, '..'), ...firebaseModules],
 };
 // module.exports = mergeConfig(DEFAULT, config);
 module.exports = config;

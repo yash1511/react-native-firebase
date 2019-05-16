@@ -29,8 +29,10 @@ import {
   isUndefined,
   isBoolean,
 } from '@react-native-firebase/common';
+import { validateStruct, validateCompound } from '@react-native-firebase/common/lib/struct';
 
 import version from './version';
+import * as structs from './structs';
 
 const ReservedEventNames = [
   'app_clear_data',
@@ -166,6 +168,100 @@ class FirebaseAnalyticsModule extends FirebaseModule {
 
   resetAnalyticsData() {
     return this.native.resetAnalyticsData();
+  }
+
+  logAddPaymentInfo() {
+    return this.logEvent('add_payment_info');
+  }
+
+  logAddToCart(object) {
+    if (!isObject(object)) {
+      throw new Error(
+        'firebase.analytics().logAddToCart(*): The supplied arg must be an object of key/values.',
+      );
+    }
+
+    validateCompound(object, 'value', 'currency', 'firebase.analytics().logAddToCart(*):');
+
+    return this.logEvent(
+      'add_payment_info',
+      validateStruct(object, structs.AddToCart, 'firebase.analytics().logAddToCart(*):'),
+    );
+  }
+
+  logAddToWishlist(object) {
+    if (!isObject(object)) {
+      throw new Error(
+        'firebase.analytics().logAddToWishlist(*): The supplied arg must be an object of key/values.',
+      );
+    }
+
+    validateCompound(object, 'value', 'currency', 'firebase.analytics().logAddToWishlist(*):');
+
+    return this.logEvent(
+      'add_to_wishlist',
+      validateStruct(object, structs.AddToWishlist, 'firebase.analytics().logAddToWishlist(*):'),
+    );
+  }
+
+  logAppOpen() {
+    return this.logEvent('app_open');
+  }
+
+  logBeginCheckout(object = {}) {
+    validateCompound(object, 'value', 'currency', 'firebase.analytics().logBeginCheckout(*):');
+
+    return this.logEvent(
+      'begin_checkout',
+      validateStruct(object, structs.BeginCheckout, 'firebase.analytics().logBeginCheckout(*):'),
+    );
+  }
+
+  logCampaignDetails(object) {
+    if (!isObject(object)) {
+      throw new Error(
+        'firebase.analytics().logCampaignDetails(*): The supplied arg must be an object of key/values.',
+      );
+    }
+
+    return this.logEvent(
+      'campaign_details',
+      validateStruct(
+        object,
+        structs.CampaignDetails,
+        'firebase.analytics().logCampaignDetails(*):',
+      ),
+    );
+  }
+
+  logEarnVirtualCurrency(object) {
+    if (!isObject(object)) {
+      throw new Error(
+        'firebase.analytics().logEarnVirtualCurrency(*): The supplied arg must be an object of key/values.',
+      );
+    }
+
+    return this.logEvent(
+      'earn_virtual_currency',
+      validateStruct(
+        object,
+        structs.EarnVirtualCurrency,
+        'firebase.analytics().logEarnVirtualCurrency(*):',
+      ),
+    );
+  }
+
+  logEcommercePurchase(object = {}) {
+    validateCompound(object, 'value', 'currency', 'firebase.analytics().logEcommercePurchase(*):');
+
+    return this.logEvent(
+      'ecommerce_purchase',
+      validateStruct(
+        object,
+        structs.EarnVirtualCurrency,
+        'firebase.analytics().logEcommercePurchase(*):',
+      ),
+    );
   }
 }
 
