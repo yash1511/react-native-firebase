@@ -43,7 +43,7 @@ class ReactNativeFirebaseAnalyticsModule internal constructor(reactContext: Reac
   }
 
   @ReactMethod
-  fun setAnalyticsCollectionEnabled(enabled: Boolean?, promise: Promise) {
+  fun setAnalyticsCollectionEnabled(enabled: Boolean, promise: Promise) {
     module.setAnalyticsCollectionEnabled(enabled).addOnCompleteListener { task ->
       when {
         task.isSuccessful -> promise.resolve(task.result)

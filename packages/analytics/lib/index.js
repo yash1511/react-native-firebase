@@ -27,6 +27,7 @@ import {
   isOneOf,
   isString,
   isUndefined,
+  isBoolean,
 } from '@react-native-firebase/common';
 
 import version from './version';
@@ -96,6 +97,12 @@ class FirebaseAnalyticsModule extends FirebaseModule {
   }
 
   setAnalyticsCollectionEnabled(enabled) {
+    if (!isBoolean(enabled)) {
+      throw new Error(
+        'firebase.analytics().setAnalyticsCollectionEnabled(*): enabled must be a boolean.',
+      );
+    }
+
     return this.native.setAnalyticsCollectionEnabled(enabled);
   }
 

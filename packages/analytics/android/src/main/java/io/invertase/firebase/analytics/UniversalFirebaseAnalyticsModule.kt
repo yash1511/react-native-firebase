@@ -36,9 +36,9 @@ class UniversalFirebaseAnalyticsModule internal constructor(context: Context, se
     }
   }
 
-  internal fun setAnalyticsCollectionEnabled(enabled: Boolean?): Task<Void> {
+  internal fun setAnalyticsCollectionEnabled(enabled: Boolean): Task<Void> {
     return Tasks.call {
-      FirebaseAnalytics.getInstance(context).setAnalyticsCollectionEnabled(enabled!!)
+      FirebaseAnalytics.getInstance(context).setAnalyticsCollectionEnabled(enabled)
       return@call null
     }
   }
