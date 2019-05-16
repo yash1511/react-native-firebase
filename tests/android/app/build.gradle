@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 apply plugin: 'io.fabric'
 apply plugin: "com.google.firebase.firebase-perf"
 
@@ -142,6 +144,8 @@ dependencies {
 
   androidTestImplementation('com.wix:detox:+') { transitive = true }
   androidTestImplementation 'junit:junit:4.12'
+  // implementation "androidx.core:core-ktx:+"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
 // Run this once to be able to run the application with BUCK
@@ -152,3 +156,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply plugin: 'com.google.gms.google-services'
+repositories {
+  mavenCentral()
+}

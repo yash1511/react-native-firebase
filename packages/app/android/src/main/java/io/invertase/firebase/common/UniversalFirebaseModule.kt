@@ -18,9 +18,10 @@ package io.invertase.firebase.common;
  */
 
 import android.content.Context
+import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
-import kotlin.collections.HashMap
+
 
 //import javax.annotation.OverridingMethodsMustInvokeSuper;
 
@@ -39,7 +40,7 @@ open class UniversalFirebaseModule(var context: Context, var serviceName: String
       val existingSingleThreadExecutor = executors[name]
       if (existingSingleThreadExecutor != null) return existingSingleThreadExecutor
       val newSingleThreadExecutor = Executors.newSingleThreadExecutor()
-      executors[name] = newSingleThreadExecutor
+      executors.put(name, newSingleThreadExecutor)
       return newSingleThreadExecutor
     }
 

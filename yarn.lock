@@ -3255,10 +3255,10 @@ detect-libc@^1.0.2:
   resolved "https://registry.yarnpkg.com/detect-libc/-/detect-libc-1.0.3.tgz#fa137c4bd698edf55cd5cd02ac559f91a4c4ba9b"
   integrity sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
 
-detox@12.5.0:
-  version "12.5.0"
-  resolved "https://registry.yarnpkg.com/detox/-/detox-12.5.0.tgz#eed11a2cfd701874534a3e6378e1195ebcb37ac0"
-  integrity sha512-QIEUj/l3GQDqzVRmRk/iiSvSey/Qam/nyV19Xc3zH23CCqWSEtdsJRmg6812uxA2ohxr4pwER7x6hb2KUYl6lA==
+detox@12.8.0:
+  version "12.8.0"
+  resolved "https://registry.yarnpkg.com/detox/-/detox-12.8.0.tgz#68cf92ff02fcdb896f05c67b2b40a8c94d09b24b"
+  integrity sha512-mDe4HcrfUePokhgv6gZADzqqgE6BxYnHXNm4qi5WrwgPJJQMjTLeJOsD7Z6t02SoK5G5Uvq3rx9Z7eI+Xgb3iQ==
   dependencies:
     bunyan "^1.8.12"
     bunyan-debug-stream "^1.1.0"

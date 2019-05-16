@@ -11,6 +11,8 @@ buildscript {
 plugins {
   id "io.invertase.gradle.build" version "1.3"
 }
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 project.ext {
   set('react-native', [
@@ -58,6 +60,8 @@ dependencies {
   api project(':@react-native-firebase_app')
   implementation "com.google.firebase:firebase-config:${ReactNative.ext.getVersion("firebase", "config")}"
   implementation "com.google.android.gms:play-services-base:${ReactNative.ext.getVersion("googlePlayServices", "base")}"
+  // implementation "androidx.core:core-ktx:+"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
 ReactNative.shared.applyPackageVersion()

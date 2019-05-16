@@ -34,7 +34,7 @@
     "@react-native-firebase/private-tests-helpers": "^0.0.9",
     "a2a": "^0.2.0",
     "babel-plugin-istanbul": "^5.1.1",
-    "detox": "12.5.0",
+    "detox": "12.8.0",
     "jet": "^0.3.0",
     "mocha": "^6.0.2",
     "nyc": "^13.3.0",

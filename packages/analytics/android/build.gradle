@@ -61,9 +61,8 @@ repositories {
 dependencies {
   implementation "com.google.firebase:firebase-analytics:${ReactNative.ext.getVersion("firebase", "analytics")}"
   implementation "com.google.android.gms:play-services-base:${ReactNative.ext.getVersion("googlePlayServices", "base")}"
-  implementation 'androidx.annotation:annotation:1.0.2'
-  implementation "androidx.core:core-ktx:+"
-  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+  // implementation "androidx.core:core-ktx:+"
+  implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
 }
 
 ReactNative.shared.applyPackageVersion()
