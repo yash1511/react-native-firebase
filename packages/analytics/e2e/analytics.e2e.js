@@ -117,6 +117,14 @@ describe('analytics()', () => {
   });
 
   describe('setAnalyticsCollectionEnabled()', () => {
+    it('errors if enabled is not a boolean', async () => {
+      (() => {
+        firebase.analytics().setAnalyticsCollectionEnabled('true');
+      }).should.throw(
+        `'firebase.analytics().setAnalyticsCollectionEnabled(*): enabled must be a boolean.',`,
+      );
+    });
+
     it('true', async () => {
       await firebase.analytics().setAnalyticsCollectionEnabled(true);
     });
