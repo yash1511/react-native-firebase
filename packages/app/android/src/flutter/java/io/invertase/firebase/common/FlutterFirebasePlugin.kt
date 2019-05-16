@@ -52,21 +52,25 @@ open class FlutterFirebasePlugin(var registrar: Registrar) {
       return "io.invertase.firebase/$module"
     }
 
-    fun createBundleFromMap(map: Map<String, Any>?): Bundle? {
+    fun createBundleFromMap(map: Map<String, Any?>?): Bundle? {
       if (map == null) {
         return null
       }
 
       val bundle = Bundle()
       for ((key, value) in map) {
-        when (value) {
-          is String -> bundle.putString(key, value)
-          is Int -> bundle.putInt(key, value)
-          is Long -> bundle.putLong(key, value)
-          is Double -> bundle.putDouble(key, value)
-          is Boolean -> bundle.putBoolean(key, value)
-          else -> throw IllegalArgumentException(
-            "Unsupported value type: " + value.javaClass.canonicalName!!)
+        if (value == null) {
+          bundle.putString(key, null)
+        } else {
+          when (value) {
+            is String -> bundle.putString(key, value)
+            is Int -> bundle.putInt(key, value)
+            is Long -> bundle.putLong(key, value)
+            is Double -> bundle.putDouble(key, value)
+            is Boolean -> bundle.putBoolean(key, value)
+            else -> throw IllegalArgumentException(
+              "Unsupported value type: " + value.javaClass.canonicalName!!)
+          }
         }
       }
       return bundle
