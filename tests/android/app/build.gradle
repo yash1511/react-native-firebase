@@ -149,4 +149,16 @@ task copyDownloadableDepsToLibs(type: Copy) {
   into 'libs'
 }
 
+configurations.all {
+  resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+    def requested = details.requested
+    if (requested.group == 'com.android.support') {
+      // Skip multidex because it follows a different versioning pattern.
+      if (!requested.name.startsWith("multidex")) {
+        details.useVersion '25.3.0'
+      }
+    }
+  }
+}
+
 apply plugin: 'com.google.gms.google-services'

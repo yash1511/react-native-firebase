@@ -43,11 +43,11 @@ open class UniversalFirebaseModule(var context: Context, var serviceName: String
       return newSingleThreadExecutor
     }
 
-  val constants: Map<String, Any>
+  open val constants: Map<String, Any>
     get() = HashMap()
 
 //  @OverridingMethodsMustInvokeSuper
-  fun onTearDown() {
+  open fun onTearDown() {
     val existingSingleThreadExecutor = executors[name]
     if (existingSingleThreadExecutor != null) {
       existingSingleThreadExecutor.shutdownNow()

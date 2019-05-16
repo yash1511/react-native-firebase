@@ -5,3 +5,7 @@ android {
     }
   }
 }
+
+dependencies {
+  implementation project(path: ':flutter_firebase_app')
+}

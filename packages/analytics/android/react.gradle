@@ -6,5 +6,9 @@ android {
   }
 }
 
+dependencies {
+  api project(':@react-native-firebase_app')
+}
+
 ReactNative.module.applyReactNativeDependency("api")
 
