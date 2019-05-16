@@ -21,7 +21,7 @@ const { readdirSync, statSync } = require('fs');
 
 const { createBlacklist } = require('metro');
 // const { mergeConfig } = require('metro-config');
-const findPlugins = require('@react-native-community/cli/build/core/findPlugins').default;
+// const findPlugins = require('@react-native-community/cli/build/core/findPlugins').default;
 
 const rootDir = resolve(__dirname, '..');
 const packagesDir = resolve(rootDir, 'packages');
@@ -32,14 +32,14 @@ const firebaseModules = readdirSync(packagesDir)
   .map(name => join(packagesDir, name))
   .filter(isDirectory);
 
-const plugins = findPlugins(__dirname);
+// const plugins = findPlugins(__dirname);
 
 const config = {
   projectRoot: __dirname,
   resolver: {
     platforms: ['ios', 'android', 'native'],
     resolverMainFields: ['react-native', 'browser', 'main'],
-    providesModuleNodeModules: ['react-native', ...plugins.haste.providesModuleNodeModules],
+    providesModuleNodeModules: ['react-native'],
     hasteImplModulePath: join(reactNativePath, 'jest/hasteImpl'),
     blackListRE: createBlacklist([
       /.*\/__fixtures__\/.*/,

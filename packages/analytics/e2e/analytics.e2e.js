@@ -121,7 +121,7 @@ describe('analytics()', () => {
       (() => {
         firebase.analytics().setAnalyticsCollectionEnabled('true');
       }).should.throw(
-        `'firebase.analytics().setAnalyticsCollectionEnabled(*): enabled must be a boolean.',`,
+        `firebase.analytics().setAnalyticsCollectionEnabled(*): enabled must be a boolean.`,
       );
     });
 

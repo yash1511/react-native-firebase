@@ -89,7 +89,7 @@ class ReactNativeFirebaseAnalyticsModule internal constructor(reactContext: Reac
   }
 
   @ReactMethod
-  fun setUserId(id: String, promise: Promise) {
+  fun setUserId(id: String?, promise: Promise) {
     module.setUserId(id).addOnCompleteListener { task ->
       when {
         task.isSuccessful -> promise.resolve(task.result)
@@ -99,7 +99,7 @@ class ReactNativeFirebaseAnalyticsModule internal constructor(reactContext: Reac
   }
 
   @ReactMethod
-  fun setUserProperty(name: String, value: String, promise: Promise) {
+  fun setUserProperty(name: String, value: String?, promise: Promise) {
     module.setUserProperty(name, value).addOnCompleteListener { task ->
       when {
         task.isSuccessful -> promise.resolve(task.result)
