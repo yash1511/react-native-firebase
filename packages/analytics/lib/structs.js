@@ -155,6 +155,11 @@ export const SelectContent = struct({
   item_id: 'string',
 });
 
+export const SetCheckoutOption = struct({
+  checkout_step: 'number',
+  checkout_option: 'string',
+});
+
 export const Share = struct({
   content_type: 'string',
   item_id: 'string',

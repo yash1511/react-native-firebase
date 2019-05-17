@@ -58,6 +58,210 @@ import {
  * @firebase analytics
  */
 export namespace Analytics {
+
+  export interface AddToCartEventParameters {
+    item_id: string;
+    item_name: string;
+    item_category: string;
+    quantity: number;
+    price?: number;
+    value?: number;
+    currency?: string;
+    origin?: string;
+    item_location_id?: string;
+    destination?: string;
+    start_date?: string;
+    end_date?: string;
+  }
+
+  export interface AddToWishlistEventParameters {
+    itemId: string;
+    itemName: string;
+    item_category: string;
+    quantity: number;
+    price?: number;
+    value?: number;
+    currency?: string;
+    item_location_id?: string;
+  }
+
+  export interface BeginCheckoutEventParameters {
+    value?: number;
+    currency?: string;
+    transaction_id?: string;
+    number_of_nights?: number;
+    number_of_rooms?: number;
+    number_of_passengers?: number;
+    origin?: string;
+    destination?: string;
+    start_date?: string;
+    end_date?: string;
+    travel_class?: string;
+  }
+
+  export interface CampaignDetailsEventParameters {
+    source: string;
+    medium: string;
+    campaign: string;
+    term?: string;
+    content?: string;
+    aclid?: string;
+    cp1?: string;
+  }
+
+  export interface EarnVirtualCurrencyEventParameters {
+    virtual_currency_name: string;
+    value: number;
+  }
+
+  export interface EcommercePurchaseEventParameters {
+    currency?: string;
+    value?: number;
+    transaction_id?: string;
+    tax?: number;
+    shipping?: number;
+    coupon?: string;
+    location?: string;
+    number_of_nights?: number;
+    number_of_rooms?: number;
+    number_of_passengers?: number;
+    origin?: string;
+    destination?: string;
+    start_date?: string;
+    end_date?: string;
+    travel_class?: string;
+  }
+
+  export interface GenerateLeadEventParameters {
+    currency?: string;
+    value?: number;
+  }
+
+  export interface JoinGroupEventParameters {
+    group_id: string;
+  }
+
+  export interface LevelEndEventParameters {
+    level: number;
+    success?: string;
+  }
+
+  export interface LevelStartEventParameters {
+    level: number;
+  }
+
+  export interface LevelUpEventParameters {
+    level: number;
+    character?: string;
+  }
+
+  export interface LoginEventParameters {
+    method: string;
+  }
+
+  export interface PostScoreEventParameters {
+    score: int;
+    level?: int;
+    character?: string;
+  }
+
+  export interface PresentOfferEventParameters {
+    score: int;
+    level?: int;
+    character?: string;
+  }
+
+  export interface PurchaseRefundEventParameters {
+    currency?: string;
+    value?: number;
+    transaction_id?: string;
+  }
+
+  export interface RemoveFromCartEventParameters {
+    item_id: string;
+    item_name: string;
+    item_category: string;
+    quantity?: number;
+    value?: number;
+    price?: number;
+    currency?: string;
+    item_location_id?: string;
+    start_date?: string;
+    end_date?: string;
+    origin?: string;
+    destination?: string;
+  }
+
+  export interface SearchEventParameters {
+    search_term: string;
+    number_of_nights?: number;
+    number_of_rooms?: number;
+    number_of_passengers?: number;
+    origin?: string;
+    destination?: string;
+    start_date?: string;
+    end_date?: string;
+    travel_class?: string;
+  }
+
+  export interface SelectContentEventParameters {
+    content_type: string;
+    item_id: string;
+  }
+
+  export interface SetCheckoutOptionEventParameters {
+    checkout_step: number;
+    checkout_option: string;
+  }
+
+  export interface ShareEventParameters {
+    content_type: string;
+    item_id: string;
+  }
+
+  export interface SignUpEventParameters {
+    method: string;
+  }
+
+  export interface SpendVirtualCurrencyEventParameters {
+    item_name: string;
+    virtual_currency_name: string;
+    value: number;
+  }
+
+  export interface UnlockAchievementEventParameters {
+    id: string;
+  }
+
+  export interface ViewItemEventParameters {
+    item_id: string;
+    item_name: string;
+    item_category: string;
+    item_location_id?: string;
+    price?: number;
+    quantity?: number;
+    currency?: string;
+    value?: number;
+    flight_number?: string;
+    number_of_passengers?: number;
+    number_of_nights?: number;
+    number_of_rooms?: number;
+    origin?: string;
+    destination?: string;
+    start_date?: string;
+    end_date?: string;
+    search_term?: string;
+    travel_class?: string;
+  }
+
+  export interface ViewItemListEventParameters {
+    item_category: string;
+  }
+
+  export interface ViewSearchResults {
+    search_term: string;
+  }
+
   export interface Statics {}
 
   /**
@@ -243,7 +447,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logAddToCart(params: Object<String, String | Number>): Promise<void>;
+    logAddToCart(params: AddToCartEventParameters): Promise<void>;
 
     /**
      * E-Commerce Add To Wishlist event. This event signifies that an item was added to a wishlist.
@@ -263,7 +467,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logAddToWishlist(params: Object<String, String | Number>): Promise<void>;
+    logAddToWishlist(params: AddToWishlistEventParameters): Promise<void>;
 
     /**
      * App Open event. By logging this event when an App is moved to the foreground, developers can
@@ -300,7 +504,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logBeginCheckout(params: Object<String, String | Number>): Promise<void>;
+    logBeginCheckout(params: BeginCheckoutEventParameters): Promise<void>;
 
     /**
      * Log this event to supply the referral details of a re-engagement campaign.
@@ -317,7 +521,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logCampaignDetails(params: Object<String, String | Number>): Promise<void>;
+    logCampaignDetails(params: CampaignDetailsEventParameters): Promise<void>;
 
     /**
      * Earn Virtual Currency event. This event tracks the awarding of virtual currency in your app. Log this along with
@@ -336,7 +540,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logEarnVirtualCurrency(params: Object<String, String | Number>): Promise<void>;
+    logEarnVirtualCurrency(params: EarnVirtualCurrencyEventParameters): Promise<void>;
 
     /**
      * E-Commerce Purchase event. This event signifies that an item was purchased by a user. This is
@@ -356,7 +560,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logEcommercePurchase(params: Object<String, String | Number>): Promise<void>;
+    logEcommercePurchase(params: EcommercePurchaseEventParameters): Promise<void>;
 
     /**
      * Generate Lead event. Log this event when a lead has been generated in the app to understand
@@ -376,7 +580,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logGenerateLead(params?: Object<String, String | Number>): Promise<void>;
+    logGenerateLead(params?: GenerateLeadEventParameters): Promise<void>;
 
     /**
      * Join Group event. Log this event when a user joins a group such as a guild, team or family.
@@ -394,7 +598,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logJoinGroup(params: Object<String, String | Number>): Promise<void>;
+    logJoinGroup(params: JoinGroupEventParameters): Promise<void>;
 
     /**
      * Level End event.
@@ -412,7 +616,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logLevelEnd(params: Object<String, String | Number>): Promise<void>;
+    logLevelEnd(params: LevelEndEventParameters): Promise<void>;
 
     /**
      * Level Start event.
@@ -429,7 +633,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logLevelStart(params: Object<String, String | Number>): Promise<void>;
+    logLevelStart(params: LevelStartEventParameters): Promise<void>;
 
     /**
      * Level Up event. This event signifies that a player has leveled up in your gaming app.
@@ -448,7 +652,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logLevelUp(params: Object<String, String | Number>): Promise<void>;
+    logLevelUp(params: LevelUpEventParameters): Promise<void>;
 
     /**
      * Login event. Apps with a login feature can report this event to signify that a user has logged in.
@@ -465,7 +669,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logLogin(params: Object<String, String | Number>): Promise<void>;
+    logLogin(params: LoginEventParameters): Promise<void>;
 
     /**
      * Present Offer event. This event signifies that the app has presented a purchase offer to a user.
@@ -486,7 +690,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logPresentOffer(params: Object<String, String | Number>): Promise<void>;
+    logPresentOffer(params: PresentOfferEventParameters): Promise<void>;
 
     /**
      * E-Commerce Purchase Refund event. This event signifies that an item purchase was refunded.
@@ -505,7 +709,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logPurchaseRefund(params?: Object<String, String | Number>): Promise<void>;
+    logPurchaseRefund(params?: PurchaseRefundEventParameters): Promise<void>;
 
     /**
      * Remove from cart event.
@@ -522,7 +726,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logRemoveFromCart(params: Object<String, String | Number>): Promise<void>;
+    logRemoveFromCart(params: RemoveFromCartEventParameters): Promise<void>;
 
     /**
      * Search event. Apps that support search features can use this event to contextualize search
@@ -541,7 +745,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logSearch(params: Object<String, String | Number>): Promise<void>;
+    logSearch(params: SearchEventParameters): Promise<void>;
 
     /**
      * Select Content event. This general purpose event signifies that a user has selected some
@@ -560,9 +764,25 @@ export namespace Analytics {
      *
      * @param params
      */
-    logSelectContent(params: Object<String, String | Number>): Promise<void>;
+    logSelectContent(params: SelectContentEventParameters): Promise<void>;
 
-    // TODO Set checkout option
+    /**
+     * Set checkout option event.
+     *
+     * Via: `set_checkout_option`
+     *
+     * #### Example
+     *
+     * ```js
+     * await firebase.analytics().logSetCheckoutOption({
+     *   checkout_step: 2,
+     *   checkout_option: 'false',
+     * });
+     * ```
+     *
+     * @param params
+     */
+    logSetCheckoutOption(params: SetCheckoutOptionEventParameters): Promise<void>;
 
     /**
      * Share event. Apps with social features can log the Share event to identify the most viral content.
@@ -581,7 +801,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logShare(params: Object<String, String | Number>): Promise<void>;
+    logShare(params: ShareEventParameters): Promise<void>;
 
     /**
      * Sign Up event. This event indicates that a user has signed up for an account in your app.
@@ -600,7 +820,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logSignUp(params: Object<String, String | Number>): Promise<void>;
+    logSignUp(params: SignUpEventParameters): Promise<void>;
 
     /**
      * Spend Virtual Currency event. This event tracks the sale of virtual goods in your app and can
@@ -620,7 +840,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logSpendVirtualCurrency(params: Object<String, String | Number>): Promise<void>;
+    logSpendVirtualCurrency(params: SpendVirtualCurrencyEventParameters): Promise<void>;
 
     /**
      * Tutorial Begin event. This event signifies the start of the on-boarding process in your app.
@@ -669,7 +889,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logUnlockAchievement(params: Object<String, String | Number>): Promise<void>;
+    logUnlockAchievement(params: UnlockAchievementEventParameters): Promise<void>;
 
     /**
      * View Item event. This event signifies that some content was shown to the user. This content
@@ -690,7 +910,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logViewItem(params: Object<String, String | Number>): Promise<void>;
+    logViewItem(params: ViewItemEventParameters): Promise<void>;
 
     /**
      * View Item List event. Log this event when the user has been presented with a list of items of a certain category.
@@ -707,7 +927,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logViewItemList(params: Object<String, String | Number>): Promise<void>;
+    logViewItemList(params: ViewItemListEventParameters): Promise<void>;
 
     /**
      * View Search Results event. Log this event when the user has been presented with the results of a search.
@@ -724,7 +944,7 @@ export namespace Analytics {
      *
      * @param params
      */
-    logViewSearchResults(params: Object<String, String | Number>): Promise<void>;
+    logViewSearchResults(params: ViewSearchResults): Promise<void>;
   }
 }
 

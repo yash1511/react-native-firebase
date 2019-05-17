@@ -458,6 +458,23 @@ class FirebaseAnalyticsModule extends FirebaseModule {
     );
   }
 
+  logSetCheckoutOption(object) {
+    if (!isObject(object)) {
+      throw new Error(
+        'firebase.analytics().logSetCheckoutOption(*): The supplied arg must be an object of key/values.',
+      );
+    }
+
+    return this.logEvent(
+      'set_checkout_option',
+      validateStruct(
+        object,
+        structs.SetCheckoutOption,
+        'firebase.analytics().logSetCheckoutOption(*):',
+      ),
+    );
+  }
+
   logShare(object) {
     if (!isObject(object)) {
       throw new Error(
