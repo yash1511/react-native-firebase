@@ -24,7 +24,7 @@ export default superstruct({
   },
 });
 
-export const validateStruct = (value, struct, prefix = '') => {
+export const validateStruct = (value = {}, struct, prefix = '') => {
   try {
     return struct(value);
   } catch (e) {
@@ -41,7 +41,7 @@ export const validateStruct = (value, struct, prefix = '') => {
   }
 };
 
-export const validateCompound = (source, a, b, prefix = '') => {
+export const validateCompound = (source = {}, a, b, prefix = '') => {
   if (isUndefined(source[a]) && !isUndefined(source[b])) {
     throw new Error(
       `${prefix} if you supply the '${a}' parameter, you must also supply the '${b}' parameter.`,

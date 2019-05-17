@@ -82,6 +82,15 @@ export const JoinGroup = struct({
   group_id: 'string',
 });
 
+export const LevelEnd = struct({
+  level: 'number',
+  success: 'string?',
+});
+
+export const LevelStart = struct({
+  level: 'number',
+});
+
 export const LevelUp = struct({
   level: 'number',
   character: 'string?',
@@ -112,6 +121,21 @@ export const PurchaseRefund = struct({
   currency: 'string?',
   value: 'number?',
   transaction_id: 'string?',
+});
+
+export const RemoveFromCart = struct({
+  item_id: 'string',
+  item_name: 'string',
+  item_category: 'string',
+  quantity: 'number?',
+  value: 'number?',
+  price: 'number?',
+  currency: 'string?',
+  item_location_id: 'string?',
+  start_date: 'shortDate?',
+  end_date: 'shortDate?',
+  origin: 'string?',
+  destination: 'string?',
 });
 
 export const Search = struct({
