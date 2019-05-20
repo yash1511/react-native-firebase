@@ -279,7 +279,7 @@ describe('analytics()', () => {
           value: 123,
         });
       } catch (e) {
-        e.message.should.containEql('are both required if either is specified');
+        e.message.should.containEql('parameter, you must also supply the');
       }
     });
 
@@ -316,7 +316,7 @@ describe('analytics()', () => {
           value: 123,
         });
       } catch (e) {
-        e.message.should.containEql('are both required if either is specified');
+        e.message.should.containEql('parameter, you must also supply the');
       }
     });
 
@@ -350,7 +350,7 @@ describe('analytics()', () => {
           value: 123,
         });
       } catch (e) {
-        e.message.should.containEql('are both required if either is specified');
+        e.message.should.containEql('parameter, you must also supply the');
       }
     });
   });
@@ -382,10 +382,412 @@ describe('analytics()', () => {
       }
     });
 
-    it('calls logCampaignDetails', async () => {
+    it('calls logEarnVirtualCurrency', async () => {
       await firebase.analytics().logEarnVirtualCurrency({
         virtual_currency_name: 'foo',
         value: 123,
+      });
+    });
+  });
+
+  describe.only('logEcommercePurchase()', () => {
+    it('calls logEcommercePurchase with no params', async () => {
+      await firebase.analytics().logEcommercePurchase();
+    });
+
+    it('calls logEcommercePurchase', async () => {
+      await firebase.analytics().logEcommercePurchase({
+        currency: 'USD',
+        value: 123,
+      });
+    });
+  });
+
+  describe.only('logGenerateLead()', () => {
+    it('calls logGenerateLead with no params', async () => {
+      await firebase.analytics().logEcommercePurchase();
+    });
+
+    it('calls logGenerateLead', async () => {
+      await firebase.analytics().logEcommercePurchase({
+        currency: 'USD',
+        value: 123,
+      });
+    });
+  });
+
+  describe.only('logJoinGroup()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logJoinGroup();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logJoinGroup', async () => {
+      await firebase.analytics().logJoinGroup({
+        group_id: '123',
+      });
+    });
+  });
+
+  describe.only('logLevelEnd()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logLevelEnd();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logLevelEnd', async () => {
+      await firebase.analytics().logLevelEnd({
+        level: 123,
+        success: 'yes',
+      });
+    });
+  });
+
+  describe.only('logLevelStart()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logLevelStart();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logLevelEnd', async () => {
+      await firebase.analytics().logLevelStart({
+        level: 123,
+      });
+    });
+  });
+
+  describe.only('logLevelUp()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logLevelUp();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logLevelUp', async () => {
+      await firebase.analytics().logLevelStart({
+        level: 123,
+        character: 'foo',
+      });
+    });
+  });
+
+  describe.only('logLogin()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logLogin();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logLogin', async () => {
+      await firebase.analytics().logLevelStart({
+        method: 'facebook.com',
+      });
+    });
+  });
+
+  describe.only('logPostScore()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logPostScore();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logPostScore', async () => {
+      await firebase.analytics().logPostScore({
+        score: 123,
+      });
+    });
+  });
+
+  describe.only('logPresentOffer()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logPresentOffer();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('errors when compound values are not set', async () => {
+      try {
+        await firebase.analytics().logPresentOffer({
+          itemId: 'foo',
+          itemName: 'foo',
+          itemCategory: 'foo',
+          quantity: 1,
+          value: 123,
+        });
+      } catch (e) {
+        e.message.should.containEql('parameter, you must also supply the');
+      }
+    });
+
+    it('calls logPresentOffer', async () => {
+      await firebase.analytics().logPresentOffer({
+        item_id: '123',
+        item_name: '123',
+        item_category: '123',
+        quantity: 123,
+      });
+    });
+  });
+
+  describe.only('logPurchaseRefund()', () => {
+    it('errors when compound values are not set', async () => {
+      try {
+        await firebase.analytics().logPurchaseRefund({
+          value: 123,
+        });
+      } catch (e) {
+        e.message.should.containEql('parameter, you must also supply the');
+      }
+    });
+
+    it('calls logPurchaseRefund with no params', async () => {
+      await firebase.analytics().logPurchaseRefund();
+    });
+
+    it('calls logPurchaseRefund', async () => {
+      await firebase.analytics().logPurchaseRefund({
+        transaction_id: '123',
+      });
+    });
+  });
+
+  describe.only('logRemoveFromCart()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logRemoveFromCart();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('errors when compound values are not set', async () => {
+      try {
+        await firebase.analytics().logRemoveFromCart({
+          item_id: 'foo',
+          item_name: 'foo',
+          item_category: 'foo',
+          value: 123,
+        });
+      } catch (e) {
+        e.message.should.containEql('parameter, you must also supply the');
+      }
+    });
+
+    it('calls logRemoveFromCart', async () => {
+      await firebase.analytics().logRemoveFromCart({
+        item_id: 'foo',
+        item_name: 'foo',
+        item_category: 'foo',
+      });
+    });
+  });
+
+  describe.only('logSearch()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logSearch();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logSearch', async () => {
+      await firebase.analytics().logSearch({
+        search_term: 'foo',
+      });
+    });
+  });
+
+  describe.only('logSelectContent()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logSelectContent();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logSelectContent', async () => {
+      await firebase.analytics().logSelectContent({
+        content_type: 'foo',
+        item_id: 'foo',
+      });
+    });
+  });
+
+  describe.only('logSetCheckoutOption()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logSetCheckoutOption();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logSelectContent', async () => {
+      await firebase.analytics().logSetCheckoutOption({
+        checkout_step: 123,
+        checkout_option: 'foo',
+      });
+    });
+  });
+
+  describe.only('logShare()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logShare();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logShare', async () => {
+      await firebase.analytics().logShare({
+        content_type: 'foo',
+        item_id: 'foo',
+      });
+    });
+  });
+
+  describe.only('logSignUp()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logSignUp();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logSignUp', async () => {
+      await firebase.analytics().logSignUp({
+        method: 'facebook.com',
+      });
+    });
+  });
+
+  describe.only('logSpendVirtualCurrency()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logSpendVirtualCurrency();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logSpendVirtualCurrency', async () => {
+      await firebase.analytics().logSpendVirtualCurrency({
+        item_name: 'foo',
+        virtual_currency_name: 'foo',
+        value: 123,
+      });
+    });
+  });
+
+  describe.only('logTutorialBegin()', () => {
+    it('calls logTutorialBegin', async () => {
+      await firebase.analytics().logTutorialBegin();
+    });
+  });
+
+  describe.only('logTutorialComplete()', () => {
+    it('calls logTutorialComplete', async () => {
+      await firebase.analytics().logTutorialComplete();
+    });
+  });
+
+  describe.only('logUnlockAchievement()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logUnlockAchievement();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logUnlockAchievement', async () => {
+      await firebase.analytics().logUnlockAchievement({
+        achievement_id: 'foo',
+      });
+    });
+  });
+
+  describe.only('logViewItem()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logViewItem();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('errors when compound values are not set', async () => {
+      try {
+        await firebase.analytics().logViewItem({
+          item_id: 'foo',
+          item_name: 'foo',
+          item_category: 'foo',
+          value: 123,
+        });
+      } catch (e) {
+        e.message.should.containEql('parameter, you must also supply the');
+      }
+    });
+
+    it('calls logUnlockAchievement', async () => {
+      await firebase.analytics().logViewItem({
+        item_id: 'foo',
+        item_name: 'foo',
+        item_category: 'foo',
+      });
+    });
+  });
+
+  describe.only('logViewItemList()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logViewItemList();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logViewItemList', async () => {
+      await firebase.analytics().logViewItemList({
+        item_category: 'foo',
+      });
+    });
+  });
+
+  describe.only('logViewSearchResults()', () => {
+    it('errors when no parameters are set', async () => {
+      try {
+        await firebase.analytics().logViewSearchResults();
+      } catch (e) {
+        e.message.should.containEql('The supplied arg must be an object of key/values');
+      }
+    });
+
+    it('calls logViewSearchResults', async () => {
+      await firebase.analytics().logViewSearchResults({
+        search_term: 'foo',
       });
     });
   });

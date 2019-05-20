@@ -16,8 +16,8 @@ export const AddToCart = struct({
 });
 
 export const AddToWishlist = struct({
-  itemId: 'string',
-  itemName: 'string',
+  item_id: 'string',
+  item_name: 'string',
   item_category: 'string',
   quantity: 'number',
   price: 'number?',
@@ -176,7 +176,7 @@ export const SpendVirtualCurrency = struct({
 });
 
 export const UnlockAchievement = struct({
-  id: 'string',
+  achievement_id: 'string',
 });
 
 export const ViewItem = struct({

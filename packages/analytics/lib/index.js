@@ -346,6 +346,12 @@ class FirebaseAnalyticsModule extends FirebaseModule {
   }
 
   logLogin(object) {
+    if (!isObject(object)) {
+      throw new Error(
+        'firebase.analytics().logLogin(*): The supplied arg must be an object of key/values.',
+      );
+    }
+
     return this.logEvent(
       'login',
       validateStruct(

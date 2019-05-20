@@ -17,8 +17,8 @@
 
 import {
   ReactNativeFirebaseModule,
-  ReactNativeFirebaseNamespace,
   ReactNativeFirebaseModuleAndStatics,
+  ReactNativeFirebaseNamespace,
 } from '@react-native-firebase/app-types';
 
 /**
@@ -58,207 +58,591 @@ import {
  * @firebase analytics
  */
 export namespace Analytics {
-
   export interface AddToCartEventParameters {
+    /**
+     * An item ID.
+     */
     item_id: string;
+    /**
+     * An item name.
+     */
     item_name: string;
+    /**
+     * An item category.
+     */
     item_category: string;
+    /**
+     * Purchase quantity.
+     */
     quantity: number;
+    /**
+     * Purchase price.
+     */
     price?: number;
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points. When a value is set, the accompanying `currency`
+     * parameter should also be defined.
+     */
     value?: number;
+    /**
+     * Purchase currency in 3 letter [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) format. E.g. `USD`.
+     */
     currency?: string;
+    /**
+     * Flight or Travel origin. E.g. `Mountain View, CA`.
+     */
     origin?: string;
+    /**
+     * The Google [Place ID](https://developers.google.com/places/place-id) that corresponds to the associated item (String). Alternatively, you can supply your own custom Location ID.
+     */
     item_location_id?: string;
+    /**
+     * Flight or Travel destination. E.g. `Mountain View, CA`.
+     */
     destination?: string;
+    /**
+     * The departure date, check-in date, or rental start date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     start_date?: string;
+    /**
+     * The arrival date, check-out date, or rental end date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     end_date?: string;
   }
 
   export interface AddToWishlistEventParameters {
-    itemId: string;
-    itemName: string;
+    /**
+     * An item ID.
+     */
+    item_id: string;
+    /**
+     * An item name.
+     */
+    item_name: string;
+    /**
+     * An item category.
+     */
     item_category: string;
+    /**
+     * Purchase quantity.
+     */
     quantity: number;
+    /**
+     * Purchase price.
+     */
     price?: number;
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points. When a value is set, the accompanying `currency`
+     * parameter should also be defined.
+     */
     value?: number;
+    /**
+     * Purchase currency in 3 letter [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) format. E.g. `USD`.
+     */
     currency?: string;
+    /**
+     * The Google [Place ID](https://developers.google.com/places/place-id) that corresponds to the associated item (String). Alternatively, you can supply your own custom Location ID.
+     */
     item_location_id?: string;
   }
 
   export interface BeginCheckoutEventParameters {
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points. When a value is set, the accompanying `currency`
+     * parameter should also be defined.
+     */
     value?: number;
+    /**
+     * Purchase currency in 3 letter [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) format. E.g. `USD`.
+     */
     currency?: string;
+    /**
+     * A single ID for a ecommerce group transaction.
+     */
     transaction_id?: string;
+    /**
+     * Number of nights staying at hotel.
+     */
     number_of_nights?: number;
+    /**
+     * Number of rooms for travel events.
+     */
     number_of_rooms?: number;
+    /**
+     * Number of passengers traveling.
+     */
     number_of_passengers?: number;
+    /**
+     * Flight or Travel origin. E.g. `Mountain View, CA`.
+     */
     origin?: string;
+    /**
+     * Flight or Travel destination. E.g. `Mountain View, CA`.
+     */
     destination?: string;
+    /**
+     * The departure date, check-in date, or rental start date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     start_date?: string;
+    /**
+     * The arrival date, check-out date, or rental end date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     end_date?: string;
+    /**
+     * Travel class. E.g. `business`.
+     */
     travel_class?: string;
   }
 
   export interface CampaignDetailsEventParameters {
+    /**
+     * Used to identify a search engine, newsletter, or other source.
+     */
     source: string;
+    /**
+     * Used to identify a medium such as email or cost-per-click (cpc).
+     */
     medium: string;
+    /**
+     *  Used for keyword analysis to identify a specific product promotion or strategic campaign.
+     */
     campaign: string;
+    /**
+     * Used with paid search to supply the keywords for ads.
+     */
     term?: string;
+    /**
+     * Used for A/B testing and content-targeted ads to differentiate ads or links that point to the same URL.
+     */
     content?: string;
+    /**
+     * A campaign detail click ID.
+     */
     aclid?: string;
     cp1?: string;
   }
 
   export interface EarnVirtualCurrencyEventParameters {
+    /**
+     * Name of virtual currency type. E.g. `gems`.
+     */
     virtual_currency_name: string;
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points.
+     */
     value: number;
   }
 
   export interface EcommercePurchaseEventParameters {
+    /**
+     * Purchase currency in 3 letter [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) format. E.g. `USD`.
+     */
     currency?: string;
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points. When a value is set, the accompanying `currency`
+     * parameter should also be defined.
+     */
     value?: number;
+    /**
+     * A single ID for a ecommerce group transaction.
+     */
     transaction_id?: string;
+    /**
+     * Tax amount.
+     */
     tax?: number;
+    /**
+     * Shipping cost.
+     */
     shipping?: number;
+    /**
+     * Coupon code for a purchasable item.
+     */
     coupon?: string;
+    /**
+     * The Google [Place ID](https://developers.google.com/places/place-id) that corresponds to the associated event. Alternatively, you can supply your own custom Location ID.
+     */
     location?: string;
+    /**
+     * Number of nights staying at hotel.
+     */
     number_of_nights?: number;
+    /**
+     * Number of rooms for travel events.
+     */
     number_of_rooms?: number;
+    /**
+     * Number of passengers traveling.
+     */
     number_of_passengers?: number;
+    /**
+     * Flight or Travel origin. E.g. `Mountain View, CA`.
+     */
     origin?: string;
+    /**
+     * Flight or Travel destination. E.g. `Mountain View, CA`.
+     */
     destination?: string;
+    /**
+     * The departure date, check-in date, or rental start date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     start_date?: string;
+    /**
+     * The arrival date, check-out date, or rental end date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     end_date?: string;
+    /**
+     * Travel class. E.g. `business`.
+     */
     travel_class?: string;
   }
 
   export interface GenerateLeadEventParameters {
+    /**
+     * Purchase currency in 3 letter [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) format. E.g. `USD`.
+     */
     currency?: string;
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points. When a value is set, the accompanying `currency`
+     * parameter should also be defined.
+     */
     value?: number;
   }
 
   export interface JoinGroupEventParameters {
+    /**
+     * Group/clan/guild id.
+     */
     group_id: string;
   }
 
   export interface LevelEndEventParameters {
+    /**
+     * Level in game.
+     */
     level: number;
+    /**
+     * The result of an operation.
+     */
     success?: string;
   }
 
   export interface LevelStartEventParameters {
+    /**
+     * Level in game.
+     */
     level: number;
   }
 
   export interface LevelUpEventParameters {
+    /**
+     * Level in game.
+     */
     level: number;
+    /**
+     * Character used in game.
+     */
     character?: string;
   }
 
   export interface LoginEventParameters {
+    /**
+     * The login method. E.g. `facebook.com`.
+     */
     method: string;
   }
 
   export interface PostScoreEventParameters {
+    /**
+     * Score in game.
+     */
     score: int;
+    /**
+     * Level in game.
+     */
     level?: int;
+    /**
+     * Character used in game.
+     */
     character?: string;
   }
 
   export interface PresentOfferEventParameters {
+    /**
+     * Score in game.
+     */
     score: int;
+    /**
+     * Level in game.
+     */
     level?: int;
+    /**
+     * Character used in game.
+     */
     character?: string;
   }
 
   export interface PurchaseRefundEventParameters {
+    /**
+     * Purchase currency in 3 letter [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) format. E.g. `USD`.
+     */
     currency?: string;
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points. When a value is set, the accompanying `currency`
+     * parameter should also be defined.
+     */
     value?: number;
+    /**
+     * A single ID for a ecommerce group transaction.
+     */
     transaction_id?: string;
   }
 
   export interface RemoveFromCartEventParameters {
+    /**
+     * An item ID.
+     */
     item_id: string;
+    /**
+     * An item name.
+     */
     item_name: string;
+    /**
+     * An item category.
+     */
     item_category: string;
+    /**
+     * Purchase quantity.
+     */
     quantity?: number;
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points. When a value is set, the accompanying `currency`
+     * parameter should also be defined.
+     */
     value?: number;
+    /**
+     * Purchase price.
+     */
     price?: number;
+    /**
+     * Purchase currency in 3 letter [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) format. E.g. `USD`.
+     */
     currency?: string;
+    /**
+     * The Google [Place ID](https://developers.google.com/places/place-id) that corresponds to the associated item (String). Alternatively, you can supply your own custom Location ID.
+     */
     item_location_id?: string;
+    /**
+     * The departure date, check-in date, or rental start date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     start_date?: string;
+    /**
+     * The arrival date, check-out date, or rental end date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     end_date?: string;
+    /**
+     * Flight or Travel origin. E.g. `Mountain View, CA`.
+     */
     origin?: string;
+    /**
+     * Flight or Travel destination. E.g. `Mountain View, CA`.
+     */
     destination?: string;
   }
 
   export interface SearchEventParameters {
     search_term: string;
+    /**
+     * Number of nights staying at hotel.
+     */
     number_of_nights?: number;
+    /**
+     * Number of rooms for travel events.
+     */
     number_of_rooms?: number;
+    /**
+     * Number of passengers traveling.
+     */
     number_of_passengers?: number;
+    /**
+     * Flight or Travel origin. E.g. `Mountain View, CA`.
+     */
     origin?: string;
+    /**
+     * Flight or Travel destination. E.g. `Mountain View, CA`.
+     */
     destination?: string;
+    /**
+     * The departure date, check-in date, or rental start date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     start_date?: string;
+    /**
+     * The arrival date, check-out date, or rental end date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     end_date?: string;
+    /**
+     * Travel class. E.g. `business`.
+     */
     travel_class?: string;
   }
 
   export interface SelectContentEventParameters {
     content_type: string;
+    /**
+     * An item ID.
+     */
     item_id: string;
   }
 
   export interface SetCheckoutOptionEventParameters {
+    /**
+     * The checkout step (1..N).
+     */
     checkout_step: number;
+    /**
+     * Some option on a step in an ecommerce flow.
+     */
     checkout_option: string;
   }
 
   export interface ShareEventParameters {
+    /**
+     * Type of content selected.
+     */
     content_type: string;
+    /**
+     * An item ID.
+     */
     item_id: string;
   }
 
   export interface SignUpEventParameters {
+    /**
+     * A particular approach used in an operation; for example, "facebook" or "email" in the context of a sign_up or login event.
+     */
     method: string;
   }
 
   export interface SpendVirtualCurrencyEventParameters {
+    /**
+     * An item name.
+     */
     item_name: string;
+    /**
+     * Name of virtual currency type. E.g. `gems`.
+     */
     virtual_currency_name: string;
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points. When a value is set, the accompanying `currency`
+     * parameter should also be defined.
+     */
     value: number;
   }
 
   export interface UnlockAchievementEventParameters {
-    id: string;
+    /**
+     * Game achievement ID (String).
+     */
+    achievement_id: string;
   }
 
   export interface ViewItemEventParameters {
+    /**
+     * An item ID.
+     */
     item_id: string;
+    /**
+     * An item name.
+     */
     item_name: string;
+    /**
+     * An item category.
+     */
     item_category: string;
+    /**
+     * The Google [Place ID](https://developers.google.com/places/place-id) that corresponds to the associated item (String). Alternatively, you can supply your own custom Location ID.
+     */
     item_location_id?: string;
+    /**
+     * Purchase price.
+     */
     price?: number;
+    /**
+     * Purchase quantity.
+     */
     quantity?: number;
+    /**
+     * Purchase currency in 3 letter [ISO_4217](https://en.wikipedia.org/wiki/ISO_4217#Active_codes) format. E.g. `USD`.
+     */
     currency?: string;
+    /**
+     * A context-specific numeric value which is accumulated automatically for each event type. Values
+     * can include revenue, distance, time and points. When a value is set, the accompanying `currency`
+     * parameter should also be defined.
+     */
     value?: number;
+    /**
+     * Flight number for travel events.
+     */
     flight_number?: string;
+    /**
+     * Number of passengers traveling.
+     */
     number_of_passengers?: number;
+    /**
+     * Number of nights staying at hotel.
+     */
     number_of_nights?: number;
+    /**
+     * Number of rooms for travel events.
+     */
     number_of_rooms?: number;
+    /**
+     * Flight or Travel origin. E.g. `Mountain View, CA`.
+     */
     origin?: string;
+    /**
+     * Flight or Travel destination. E.g. `Mountain View, CA`.
+     */
     destination?: string;
+    /**
+     * The departure date, check-in date, or rental start date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     start_date?: string;
+    /**
+     * The arrival date, check-out date, or rental end date for the item (String). The parameter expects a date formatted as YYYY-MM-DD.
+     */
     end_date?: string;
+    /**
+     * The search string/keywords used.
+     */
     search_term?: string;
+    /**
+     * Travel class. E.g. `business`.
+     */
     travel_class?: string;
   }
 
   export interface ViewItemListEventParameters {
+    /**
+     * An item category.
+     */
     item_category: string;
   }
 
   export interface ViewSearchResults {
+    /**
+     * The search string/keywords used.
+     */
     search_term: string;
   }
 
@@ -441,11 +825,14 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logAddToCart({
-     *
+     *   item_id: 'abcd',
+     *   item_name: 't-shirt 1',
+     *   item_category: 'shirts',
+     *   quantity: 2,
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.AddToCartEventParameters}.
      */
     logAddToCart(params: AddToCartEventParameters): Promise<void>;
 
@@ -461,11 +848,14 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logAddToWishlist({
-     *
+     *   item_id: 'abcd',
+     *   item_name: 't-shirt 1',
+     *   item_category: 'shirts',
+     *   quantity: 2,
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.AddToWishlistEventParameters}.
      */
     logAddToWishlist(params: AddToWishlistEventParameters): Promise<void>;
 
@@ -498,13 +888,13 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logBeginCheckout({
-     *
+     *  travel_class: 'business',
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.BeginCheckoutEventParameters}.
      */
-    logBeginCheckout(params: BeginCheckoutEventParameters): Promise<void>;
+    logBeginCheckout(params?: BeginCheckoutEventParameters): Promise<void>;
 
     /**
      * Log this event to supply the referral details of a re-engagement campaign.
@@ -515,11 +905,13 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logCampaignDetails({
-     *
+     *   source: 'email',
+     *   medium: 'cta_button',
+     *   campaign: 'newsletter',
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.CampaignDetailsEventParameters}.
      */
     logCampaignDetails(params: CampaignDetailsEventParameters): Promise<void>;
 
@@ -538,7 +930,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.EarnVirtualCurrencyEventParameters}.
      */
     logEarnVirtualCurrency(params: EarnVirtualCurrencyEventParameters): Promise<void>;
 
@@ -554,13 +946,13 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logEcommercePurchase({
-     *
+     *   coupon: 'BOGOFF',
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.EcommercePurchaseEventParameters}.
      */
-    logEcommercePurchase(params: EcommercePurchaseEventParameters): Promise<void>;
+    logEcommercePurchase(params?: EcommercePurchaseEventParameters): Promise<void>;
 
     /**
      * Generate Lead event. Log this event when a lead has been generated in the app to understand
@@ -574,11 +966,12 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logGenerateLead({
-     *
+     *   currency: 'USD',
+     *   value: 123,
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.GenerateLeadEventParameters}.
      */
     logGenerateLead(params?: GenerateLeadEventParameters): Promise<void>;
 
@@ -596,7 +989,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.JoinGroupEventParameters}.
      */
     logJoinGroup(params: JoinGroupEventParameters): Promise<void>;
 
@@ -614,7 +1007,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.LevelEndEventParameters}.
      */
     logLevelEnd(params: LevelEndEventParameters): Promise<void>;
 
@@ -631,7 +1024,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.LevelStartEventParameters}.
      */
     logLevelStart(params: LevelStartEventParameters): Promise<void>;
 
@@ -650,7 +1043,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.LevelUpEventParameters}.
      */
     logLevelUp(params: LevelUpEventParameters): Promise<void>;
 
@@ -667,7 +1060,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.LoginEventParameters}.
      */
     logLogin(params: LoginEventParameters): Promise<void>;
 
@@ -684,11 +1077,15 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logPresentOffer({
-     *
+     *   item_id: 'abcd',
+     *   item_name: 't-shirt',
+     *   item_category: 'shirts',
+     *   quantity: 1,
+     *   price: 9.99,
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.PresentOfferEventParameters}.
      */
     logPresentOffer(params: PresentOfferEventParameters): Promise<void>;
 
@@ -703,11 +1100,11 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logPurchaseRefund({
-     *
+     *  transaction_id: 'abcd',
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.PurchaseRefundEventParameters}.
      */
     logPurchaseRefund(params?: PurchaseRefundEventParameters): Promise<void>;
 
@@ -720,11 +1117,13 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logRemoveFromCart({
-     *
+     *   item_id: 'abcd',
+     *   item_name: 't-shirt',
+     *   item_category: 'shirts',
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.RemoveFromCartEventParameters}.
      */
     logRemoveFromCart(params: RemoveFromCartEventParameters): Promise<void>;
 
@@ -743,7 +1142,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.SearchEventParameters}.
      */
     logSearch(params: SearchEventParameters): Promise<void>;
 
@@ -758,11 +1157,12 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logSelectContent({
-     *
+     *  content_type: 'clothing',
+     *  item_id: 'abcd',
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.SelectContentEventParameters}.
      */
     logSelectContent(params: SelectContentEventParameters): Promise<void>;
 
@@ -780,7 +1180,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.SetCheckoutOptionEventParameters}.
      */
     logSetCheckoutOption(params: SetCheckoutOptionEventParameters): Promise<void>;
 
@@ -799,7 +1199,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.ShareEventParameters}.
      */
     logShare(params: ShareEventParameters): Promise<void>;
 
@@ -818,7 +1218,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.SignUpEventParameters}.
      */
     logSignUp(params: SignUpEventParameters): Promise<void>;
 
@@ -838,7 +1238,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.SpendVirtualCurrencyEventParameters}.
      */
     logSpendVirtualCurrency(params: SpendVirtualCurrencyEventParameters): Promise<void>;
 
@@ -887,7 +1287,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.UnlockAchievementEventParameters}.
      */
     logUnlockAchievement(params: UnlockAchievementEventParameters): Promise<void>;
 
@@ -904,11 +1304,13 @@ export namespace Analytics {
      *
      * ```js
      * await firebase.analytics().logViewItem({
-     *
+     *  item_id: 'abcd',
+     *  item_name: 't-shirt',
+     *  item_category: 'shirts',
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.ViewItemEventParameters}.
      */
     logViewItem(params: ViewItemEventParameters): Promise<void>;
 
@@ -925,7 +1327,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.ViewItemListEventParameters}.
      */
     logViewItemList(params: ViewItemListEventParameters): Promise<void>;
 
@@ -942,7 +1344,7 @@ export namespace Analytics {
      * });
      * ```
      *
-     * @param params
+     * @param params See {@link analytics.ViewSearchResults}.
      */
     logViewSearchResults(params: ViewSearchResults): Promise<void>;
   }
@@ -974,10 +1376,7 @@ declare module '@react-native-firebase/analytics' {
  */
 declare module '@react-native-firebase/app-types' {
   interface ReactNativeFirebaseNamespace {
-    analytics: ReactNativeFirebaseModuleAndStatics<
-      Analytics.Module,
-      Analytics.Statics
-    >;
+    analytics: ReactNativeFirebaseModuleAndStatics<Analytics.Module, Analytics.Statics>;
   }
 
   interface FirebaseApp {
